@@ -1,2 +1,2 @@
 # EIMS
-employer's information management system
+employee's information management system
