@@ -1,0 +1,34 @@
+<html>
+	<head><title>职工信息管理系统</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+<body>
+	<form action="data_process.php" method="post">
+		<tr>
+			<td>班组</td>
+			<td><select name="class">
+					<option value = "zhidongshi">制动室</option>
+					<option value = "jiaban">甲班</option>
+					<option value = "yiban">乙班</option>
+					<option value = "bingban">丙班</option>
+				  </select>
+			<td>年度</td>
+			<td><select name="year">
+					<option value = "2018">2018</option>
+					<option value = "2017">2017</option>
+					</select>	  
+			<td>月度</td>
+			<td><select name="month">
+					<option value = "september">九月</option>
+					<option value = "october">十月</option>
+					<option value = "november">十一月</option>
+					<option value = "december">十二月</option>
+				  </select>
+			</td>
+			<td colspan="2" align="center"><input type="submit" value="查询" /></td>
+		</tr>
+	</form>
+	
+	
+</body>
+</html>
