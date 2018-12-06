@@ -7,10 +7,10 @@
 		<tr>
 			<td>班组</td>
 			<td><select name="class">
-					<option value = "zhidongshi">制动室</option>
-					<option value = "jiaban">甲班</option>
-					<option value = "yiban">乙班</option>
-					<option value = "bingban">丙班</option>
+					<option value = "制动组">制动组</option>
+					<option value = "库检甲班">甲班</option>
+					<option value = "库检乙班">乙班</option>
+					<option value = "库检丙班">丙班</option>
 				  </select>
 			<td>年度</td>
 			<td><select name="year">
@@ -29,9 +29,7 @@
 		</tr>
 	</form>
 	<?php
-	
-	/*echo '<h4>班组岗位星级评价表</h4></br>'
-	
+/*
 	//$dbhost = 'localhost:3306';  // mysql服务器主机地址
 	//$dbuser = 'root';            // mysql用户名
 	//$dbpass = 'jiazijian';          // mysql用户名密码
@@ -45,27 +43,34 @@ echo '连接成功<br />';
 
 mysqli_select_db($conn, 'emis' );
 mysqli_close($conn);*/
+
+@$class=$_POST['class'];
+@$class='\''.$class.'\'';
+echo '<p>'.$class.'</p>';
 @ $db = new mysqli('localhost','root','jiazijian','eims');
 if (mysqli_connect_errno()) {
      echo 'Error: Could not connect to database.  Please try again later.';
      exit;
   }
-$query = "select * from basic_info";
+ //$charset=mysqli_character_set_name($db);  //返回数据库默认字符集的编码utf8
+//echo "默认字符集为: " . $charset;
+  
+$query = "select * from basic_info WHERE class=$class";
   $result = $db->query($query);
   $num_results = $result->num_rows;
 
   echo "<p>Number of workers found: ".$num_results."</p>";
+  	 echo "<tr>
+	 <td>姓名</td><td>工号</td><td>班组</td>
+	 </tr></br>";
   for ($i=0; $i <$num_results; $i++) {
      $row = $result->fetch_assoc();
-     echo "<p><strong>".($i+1).". Title: ";
-     echo htmlspecialchars(stripslashes($row['title']));
-     echo "</strong><br />Author: ";
-     echo stripslashes($row['author']);
-     echo "<br />ISBN: ";
-     echo stripslashes($row['isbn']);
-     echo "<br />Price: ";
-     echo stripslashes($row['price']);
-     echo "</p>";
+	 echo 
+	 stripslashes($row['name']);
+	 echo stripslashes($row['woker_id']);
+	 echo stripslashes($row['class']);
+	 echo "</br>";
+	 }
 	?>
 	
 </body>
